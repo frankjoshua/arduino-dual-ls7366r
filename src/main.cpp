@@ -13,7 +13,7 @@ Encoder_Buffer Encoder2(EncoderCS2);
 void setup()
 {
   // put your setup code here, to run once:
-  Serial.begin(9600);
+  Serial.begin(115200);
   SPI.begin();
   Encoder1.initEncoder();
   Encoder2.initEncoder();
@@ -21,10 +21,11 @@ void setup()
 
 void loop()
 {
-  encoder1Reading = Encoder1.readEncoder(); //Read Encoder
-  encoder2Reading = -Encoder2.readEncoder();
+  encoder1Reading = Encoder1.readEncoder() / 4; //Read Encoder
+  encoder2Reading = -Encoder2.readEncoder() / 4;
   Serial.print(encoder1Reading);
   Serial.print(",");
   Serial.println(encoder2Reading);
-  //Encoder1.clearEncoderCount();// Clear Encoder
+
+  delay(10);
 }
